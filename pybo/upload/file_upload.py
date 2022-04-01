@@ -1,20 +1,21 @@
-from flask import Flask, render_template, request, Blueprint
+from flask import render_template, request, Blueprint
 
 from werkzeug.utils import secure_filename
 
-bp = Blueprint('main',__name__,url_prefix='/')#초기 주소
+bp = Blueprint('file_upload', __name__, url_prefix='/')  # 초기 주소
 
-@bp.route('/hello')
-def hello():
-    return "hell123123123o"
+UPLOAD_FOLDER = '/path/to/the/uploads'
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 @bp.route('/upload')
-def upload_file():
+def render_file():
     return render_template('upload.html')
 
-@bp.route('/uploader', methods = ['GET', 'POST'])
+
+@bp.route('/uploader', methods=['GET', 'POST'])
 def uploader_file():
     if request.method == 'POST':
         f = request.files['file']
         f.save(secure_filename(f.filename))
         return 'file uploaded successfully'
+    return 'fuck'
