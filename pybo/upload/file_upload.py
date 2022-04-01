@@ -6,7 +6,7 @@ bp = Blueprint('main',__name__,url_prefix='/')#초기 주소
 
 @bp.route('/hello')
 def hello():
-    return "hello"
+    return "hell123123o"
 
 @bp.route('/upload')
 def upload_file():
